@@ -1,7 +1,7 @@
+import PropTypes from "prop-types";
 import styles from "../../styles/Artist.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import PropTypes from "prop-types";
 
 export default function Artist({mbid, name, image, listeners, playCount}) {
     return (
