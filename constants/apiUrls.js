@@ -3,7 +3,7 @@ export default class ApiUrl {
     static apiKey = process.env.LAST_FM_API_KEY;
 
     static getTopArtists = (page, limit = 50) => {
-        return `${ApiUrl.baseURL}method=chart.gettopartists&api_key=${ApiUrl.apiKey}&page=${page}&limit=${limit}&format=json`;
+        return `${process.env.NEXT_PUBLIC_LAST_FM_API_URL}method=chart.gettopartists&api_key=${process.env.NEXT_PUBLIC_LAST_FM_API_KEY}&page=${page}&limit=${limit}&format=json`;
     }
 
     static getTopAlbums = (mbid, page = 1, limit = 50) => {
