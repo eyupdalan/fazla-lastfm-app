@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styles from "../../styles/Artist.module.css";
-import Image from "next/image";
-import Link from "next/link";
+import Image from "../Image";
+import ArtistName from "../ArtistName";
 
 export default function Artist({mbid, name, image, listeners, playCount}) {
     return (
@@ -12,11 +12,7 @@ export default function Artist({mbid, name, image, listeners, playCount}) {
             <div className={styles.artistDetailContainer}>
                 <h5>Artist</h5>
                 <div className={styles.artistDetail}>
-                    <div className={styles.artistName}>
-                        <Link href={`/artist/${mbid}`}>
-                        {name}
-                        </Link>
-                    </div>
+                    <ArtistName mbid={mbid} name={name}/>
                     <div>
                         <div>Listeners: {listeners}</div>
                         <div>Play count: {playCount}</div>

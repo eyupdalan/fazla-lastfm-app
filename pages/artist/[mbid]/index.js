@@ -1,18 +1,19 @@
 import styles from "../../../styles/ArtistDetailPage.module.css";
 import ApiUrl from "../../../constants/apiUrls";
 import {useEffect, useState} from "react";
+import TopArtistDetailCardList from "../../../components/TopArtistDetailCardList";
 
 export default function Artist({topAlbums, topTracks}) {
     const [artist, setArtist] = useState({});
 
     useEffect(() => {
-        if (!topAlbums||topAlbums.length<=0){
+        if (!topAlbums || topAlbums.length <= 0) {
             return;
         }
 
         const artist = topAlbums[0].artist;
         setArtist(artist);
-    },[topAlbums])
+    }, [topAlbums])
 
     return (
         <div className={styles.artistDetailContainer}>
@@ -22,11 +23,11 @@ export default function Artist({topAlbums, topTracks}) {
             <div className={styles.artistDetails}>
                 <div className={styles.artistDetailColumn}>
                     <h1>Top Albums</h1>
-                    <div>{JSON.stringify(topAlbums)}</div>
+                    <TopArtistDetailCardList data={topAlbums}/>
                 </div>
                 <div className={styles.artistDetailColumn}>
                     <h1>Top Tracks</h1>
-                    <div>{JSON.stringify(topTracks)}</div>
+                    <TopArtistDetailCardList data={topTracks}/>
                 </div>
             </div>
         </div>
