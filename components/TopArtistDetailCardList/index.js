@@ -1,5 +1,6 @@
 import NoDataFound from "../NoDataFound";
 import ArtistDetailCard from "../ArtistDetailCard";
+import PropTypes from "prop-types";
 
 export default function TopArtistDetailCardList({data}) {
     if (!data || data.length === 0) {
@@ -24,4 +25,12 @@ export default function TopArtistDetailCardList({data}) {
             }
         </>
     )
+}
+
+TopArtistDetailCardList.propTypes = {
+    data: PropTypes.array.isRequired
+}
+
+TopArtistDetailCardList.defaultProps = {
+    data: []
 }

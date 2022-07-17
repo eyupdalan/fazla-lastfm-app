@@ -1,6 +1,7 @@
 import styles from "../../styles/ArtistDetailCard.module.css";
 import Image from "../Image";
 import ArtistName from "../ArtistName";
+import PropTypes from "prop-types";
 
 export default function ArtistDetailCard({mbid, artist, name, image, listeners, playCount}) {
     return (
@@ -14,10 +15,24 @@ export default function ArtistDetailCard({mbid, artist, name, image, listeners, 
                     <ArtistName mbid={mbid} name={artist}/>
                 </div>
                 <div>
-                    <div>Listeners: {listeners}</div>
+                    {listeners && <div>Listeners: {listeners}</div>}
                     <div>Play count: {playCount}</div>
                 </div>
             </div>
         </div>
     )
+}
+
+ArtistDetailCard.propTypes = {
+    mbid: PropTypes.string.isRequired,
+    artist: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    listeners: PropTypes.number,
+    playCount: PropTypes.number
+}
+
+ArtistDetailCard.defaultProps = {
+    listeners: null,
+    playCount: null
 }
