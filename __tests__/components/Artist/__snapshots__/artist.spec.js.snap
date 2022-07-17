@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Artist component 1`] = `
+<div>
+  <div
+    class="artist"
+  >
+    <div
+      class="artistImage"
+    >
+      <div>
+        No Image
+      </div>
+    </div>
+    <div
+      class="artistDetailContainer"
+    >
+      <h5>
+        Artist
+      </h5>
+      <div
+        class="artistDetail"
+      >
+        <div
+          class="artistName"
+        >
+          <a
+            href="/artist"
+          />
+        </div>
+        <div>
+          <div>
+            Listeners: 
+            0
+          </div>
+          <div>
+            Play count: 
+            0
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
