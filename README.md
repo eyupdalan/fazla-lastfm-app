@@ -35,4 +35,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 # eyupdalan notes
 - app created with next.js
-- 
+- "artist" page created (routing with "mbid" info from lastfm api)
