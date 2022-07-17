@@ -2,6 +2,7 @@ import styles from "../../../styles/ArtistDetailPage.module.css";
 import ApiUrl from "../../../constants/apiUrls";
 import {useEffect, useState} from "react";
 import TopArtistDetailCardList from "../../../components/TopArtistDetailCardList";
+import Link from "next/link";
 
 export default function Artist({topAlbums, topTracks}) {
     const [artist, setArtist] = useState({});
@@ -18,6 +19,9 @@ export default function Artist({topAlbums, topTracks}) {
     return (
         <div className={styles.artistDetailContainer}>
             <div className={styles.artistInfo}>
+                <div className={styles.backButton}>
+                    <Link href="/">Back</Link>
+                </div>
                 <h1>{artist.name}</h1>
             </div>
             <div className={styles.artistDetails}>

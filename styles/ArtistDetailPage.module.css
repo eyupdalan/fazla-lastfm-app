@@ -5,7 +5,15 @@
 }
 
 .artistInfo {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
     border: 1px solid #ccc;
+    margin: 10px;
+}
+
+.backButton {
     margin: 10px;
 }
 
