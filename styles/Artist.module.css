@@ -1,4 +1,5 @@
 .artist {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -10,4 +11,29 @@
     border-right: 1px solid #ccc;
     justify-self: center;
     padding: 5px;
+}
+
+.artistDetailContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+.artistDetailContainer h5{
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+}
+
+.artistDetail {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.artistName{
+    font-size: 1.2em;
+    font-weight: bold;
 }
