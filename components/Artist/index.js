@@ -24,10 +24,25 @@ export default function Artist({mbid, name, image, listeners, playCount}) {
 }
 
 Artist.propTypes = {
+    /**
+     * The artist's MusicBrainz ID
+     */
     mbid: PropTypes.string.isRequired,
+    /**
+     * The artist's name
+     */
     name: PropTypes.string.isRequired,
+    /**
+     * The artist's image
+     */
     image: PropTypes.string.isRequired,
+    /**
+     * The artist's listeners count
+     */
     listeners: PropTypes.number.isRequired,
+    /**
+     * The artist's play count
+     */
     playCount: PropTypes.number.isRequired
 }
 
