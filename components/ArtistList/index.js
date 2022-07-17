@@ -7,7 +7,7 @@ export default function ArtistList({data}){
             key={artist.mbid}
             mbid={artist.mbid}
             name={artist.name}
-            playcount={artist.playcount}
+            playCount={artist.playcount}
             listeners={artist.listeners}
             image={artist.image[0]["#text"]}
         />
