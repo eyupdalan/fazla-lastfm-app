@@ -14,6 +14,7 @@ export default function ArtistList({data}){
     ))
     return (
         <div>
+            <h2>Artists List</h2>
             {artists}
         </div>
     )
