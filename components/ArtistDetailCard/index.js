@@ -6,7 +6,7 @@ import {Card} from "antd";
 
 export default function ArtistDetailCard({mbid, artist, name, image, listeners, playCount}) {
     return (
-        <Card style={{width: 500, margin: 10}}>
+        <Card style={{width: "100%", margin: 10}}>
             <div className={styles.artistDetailCard}>
                 <div className={styles.artistDetailCardImage}>
                     <Image src={image} alt={name} height={100} width={100}/>
