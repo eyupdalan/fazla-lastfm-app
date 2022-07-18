@@ -5,11 +5,9 @@ import ArtistList from "../components/ArtistList";
 import ApiUrl from "../constants/apiUrls";
 import {useInfiniteQuery} from "react-query";
 import {useEffect, useRef, useState} from "react";
+import InfiniteScroller from "../components/InfiniteScroller";
 
 export default function Home() {
-
-    const [lastElement, setLastElement] = useState(null);
-
     const getTopArtists = async ({pageParam = 1}) => {
         const url = ApiUrl.getTopArtists(pageParam);
         const res = await fetch(url);
@@ -34,34 +32,6 @@ export default function Home() {
         }
     });
 
-    const observer = useRef(null);
-
-    useEffect(() => {
-        observer.current = new IntersectionObserver(
-            (entries) => {
-                const first = entries[0];
-                if (first.isIntersecting) {
-                    fetchNextPage();
-                }
-            })
-
-    }, []);
-
-    useEffect(() => {
-        const currentElement = lastElement;
-        const currentObserver = observer.current;
-
-        if (currentElement) {
-            currentObserver.observe(currentElement);
-        }
-
-        return () => {
-            if (currentElement) {
-                currentObserver.unobserve(currentElement);
-            }
-        };
-    }, [lastElement]);
-
     return (
         <div className={styles.container}>
             <Head>
@@ -70,19 +40,19 @@ export default function Home() {
             </Head>
 
             <main className={styles.main}>
-                <h2>Artists List</h2>
-                <div>{isLoading ? 'Loading...' : null}</div>
-                <div>{isError ? error.message : null}</div>
-                {
-                    data && data.pages.map(page => <ArtistList data={page.artists}/>)
-                }
-                <div ref={setLastElement}/>
-                <div className='btn-container'>
-                    <button onClick={fetchNextPage}>Load More</button>
-                </div>
-                <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
+                <InfiniteScroller
+                    error={error}
+                    isError={isError}
+                    isLoading={isLoading}
+                    isFetching={isFetching && !isFetchingNextPage}
+                    onScroll={fetchNextPage}
+                >
+                    <h2>Artists List</h2>
+                    {
+                        data && data.pages.map(page => <ArtistList data={page.artists}/>)
+                    }
+                </InfiniteScroller>
             </main>
-
             <footer className={styles.footer}>
                 Fazla Gıda Frontend Case Study
             </footer>
