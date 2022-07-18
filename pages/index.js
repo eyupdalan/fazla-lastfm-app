@@ -16,6 +16,23 @@ export default function Home() {
         return {artists, page: parseInt(page, 10), totalPages: parseInt(totalPages, 10)}
     };
 
+    const isLastPage = (data) => {
+        if (!data) {
+            return false;
+        }
+
+        const {page, totalPages} = data.pages[data.pages.length - 1];
+        return page === totalPages;
+    }
+
+    const childrenRenderer = (data) => {
+        if (!data) {
+            return null;
+        }
+
+        return data.pages.map((page) => <ArtistList key={new Date()} data={page.artists}/>)
+    }
+
     return (
         <div className={styles.container}>
             <Head>
@@ -28,7 +45,8 @@ export default function Home() {
                 <InfiniteScroller
                     queryKey={'top-artists'}
                     apiCallback={getTopArtists}
-                    childrenRenderer={(data) => (data && data.pages.map(page => <ArtistList data={page.artists}/>))}
+                    childrenRenderer={childrenRenderer}
+                    lastPageController={isLastPage}
                 />
             </main>
             <footer className={styles.footer}>

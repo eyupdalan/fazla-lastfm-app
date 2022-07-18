@@ -1,10 +1,15 @@
 import {useEffect, useRef, useState} from "react";
+import PropTypes from "prop-types";
 import {useInfiniteQuery} from "react-query";
 
-export default function InfiniteScroller({queryKey, apiCallback, childrenRenderer}) {
+export default function InfiniteScroller({queryKey, apiCallback, childrenRenderer, lastPageController}) {
+    const [isLastPage, setIsLastPage] = useState(false);
     const [lastElement, setLastElement] = useState(null);
     const observer = useRef(null);
 
+    const getNextPageParam = (lastPage) => {
+        return lastPage.page + 1
+    }
     const {
         isLoading,
         isError,
@@ -13,11 +18,11 @@ export default function InfiniteScroller({queryKey, apiCallback, childrenRendere
         fetchNextPage,
         isFetching,
         isFetchingNextPage
-    } = useInfiniteQuery([queryKey], apiCallback, {
-        getNextPageParam: (lastPage) => {
-            return lastPage.page + 1
-        }
-    });
+    } = useInfiniteQuery([queryKey], apiCallback, {getNextPageParam});
+
+    useEffect(()=>{
+        setIsLastPage(lastPageController(data))
+    },[data])
 
     useEffect(() => {
         const currentElement = lastElement;
@@ -34,16 +39,21 @@ export default function InfiniteScroller({queryKey, apiCallback, childrenRendere
         };
     }, [lastElement]);
 
-    useEffect(() => {
-        observer.current = new IntersectionObserver(
-            (entries) => {
-                const first = entries[0];
-                if (first.isIntersecting) {
-                    fetchNextPage();
-                }
-            })
 
-    }, [fetchNextPage]);
+    useEffect(() => {
+        const generateObserver = (entries) => {
+            debugger;
+            if (isLastPage) {
+                return;
+            }
+            const first = entries[0];
+            if (first.isIntersecting) {
+                fetchNextPage();
+            }
+        }
+
+        observer.current = new IntersectionObserver(generateObserver);
+    }, [isLastPage, fetchNextPage]);
 
     return (
         <>
@@ -54,4 +64,21 @@ export default function InfiniteScroller({queryKey, apiCallback, childrenRendere
             <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
         </>
     )
+}
+
+InfiniteScroller.propTypes = {
+    queryKey: PropTypes.string.isRequired,
+    apiCallback: PropTypes.func.isRequired,
+    childrenRenderer: PropTypes.func.isRequired,
+    lastPageController: PropTypes.func.isRequired
+}
+
+InfiniteScroller.defaultProps = {
+    queryKey: '',
+    apiCallback: () => {
+    },
+    childrenRenderer: () => {
+    },
+    lastPageController: () => {
+    }
 }
