@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Infinite Scroller component renders Artist component 1`] = `
+<div>
+  <div>
+    Loading...
+  </div>
+  <div />
+  <div />
+  <div>
+    Fetching...
+  </div>
+</div>
+`;

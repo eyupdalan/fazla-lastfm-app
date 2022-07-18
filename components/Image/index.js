@@ -1,13 +1,13 @@
 import NextImage from "next/image";
 import PropTypes from "prop-types";
+import { Empty } from 'antd';
 
 export default function Image({src, alt, height, width, ...rest}) {
-    const imageLoader = (params) => src;
     if (!src) {
-        return <div>No Image</div>
+        return <Empty id={"no-image"} image={Empty.PRESENTED_IMAGE_SIMPLE} description={"No image"}/>
     }
 
-    return <NextImage loader={imageLoader} src={src} alt={alt} width={width} height={height} {...rest}/>
+    return <NextImage src={src} alt={alt} width={width} height={height} unoptimized={true} {...rest}/>
 }
 
 Image.propTypes = {

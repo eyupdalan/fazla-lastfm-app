@@ -22,7 +22,11 @@ export default function InfiniteScroller({queryKey, apiCallback, childrenRendere
 
     useEffect(()=>{
         setIsLastPage(lastPageController(data))
+<<<<<<< HEAD
     },[data])
+=======
+    },[data, lastPageController])
+>>>>>>> 4615feb (eyup adds tests and stories)
 
     useEffect(() => {
         const currentElement = lastElement;
@@ -42,7 +46,10 @@ export default function InfiniteScroller({queryKey, apiCallback, childrenRendere
 
     useEffect(() => {
         const generateObserver = (entries) => {
+<<<<<<< HEAD
             debugger;
+=======
+>>>>>>> 4615feb (eyup adds tests and stories)
             if (isLastPage) {
                 return;
             }

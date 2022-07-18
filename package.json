@@ -10,9 +10,10 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "yarn test --watch"
   },
   "dependencies": {
+    "antd": "^4.21.7",
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

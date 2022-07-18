@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Artist Name component 1`] = `
+<div>
+  <div
+    class="artistName"
+  >
+    <a
+      href="/artist/deneme"
+    >
+      test
+    </a>
+  </div>
+</div>
+`;

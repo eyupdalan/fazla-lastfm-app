@@ -1,7 +1,7 @@
+import {Empty} from "antd";
+
 export default function NoDataFound() {
     return (
-        <div>
-            <h1>No data found</h1>
-        </div>
+        <Empty id={"no-data-found"} image={Empty.PRESENTED_IMAGE_DEFAULT} description={"No data found"}/>
     );
 }

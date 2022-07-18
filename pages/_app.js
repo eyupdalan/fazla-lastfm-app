@@ -1,4 +1,5 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
+import "antd/dist/antd.css";
 import {QueryClient, QueryClientProvider,} from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 

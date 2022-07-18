@@ -3,14 +3,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid #ccc;
-    margin: 10px;
 }
 
 .artistImage {
-    border-right: 1px solid #ccc;
     justify-self: center;
-    padding: 5px;
 }
 
 .artistDetailContainer {
@@ -22,7 +18,6 @@
 
 .artistDetailContainer h5{
     border-bottom: 1px solid #ccc;
-    margin: 0;
 }
 
 .artistDetail {
