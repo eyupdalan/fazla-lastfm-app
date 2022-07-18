@@ -3,8 +3,6 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import ArtistList from "../components/ArtistList";
 import ApiUrl from "../constants/apiUrls";
-import {useInfiniteQuery} from "react-query";
-import {useEffect, useRef, useState} from "react";
 import InfiniteScroller from "../components/InfiniteScroller";
 
 export default function Home() {
@@ -18,20 +16,6 @@ export default function Home() {
         return {artists, page: parseInt(page, 10), totalPages: parseInt(totalPages, 10)}
     };
 
-    const {
-        isLoading,
-        isError,
-        error,
-        data,
-        fetchNextPage,
-        isFetching,
-        isFetchingNextPage
-    } = useInfiniteQuery(['top-artists'], getTopArtists, {
-        getNextPageParam: (lastPage) => {
-            return lastPage.page + 1
-        }
-    });
-
     return (
         <div className={styles.container}>
             <Head>
@@ -40,18 +24,12 @@ export default function Home() {
             </Head>
 
             <main className={styles.main}>
+                <h2>Artists List</h2>
                 <InfiniteScroller
-                    error={error}
-                    isError={isError}
-                    isLoading={isLoading}
-                    isFetching={isFetching && !isFetchingNextPage}
-                    onScroll={fetchNextPage}
-                >
-                    <h2>Artists List</h2>
-                    {
-                        data && data.pages.map(page => <ArtistList data={page.artists}/>)
-                    }
-                </InfiniteScroller>
+                    queryKey={'top-artists'}
+                    apiCallback={getTopArtists}
+                    childrenRenderer={(data) => (data && data.pages.map(page => <ArtistList data={page.artists}/>))}
+                />
             </main>
             <footer className={styles.footer}>
                 Fazla Gıda Frontend Case Study
