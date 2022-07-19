@@ -2,7 +2,6 @@
 [build]
   command = "next build"
   functions = "netlify/functions"
-  publish = ".next"
 [functions]
   included_files = ["public/locales/*"]
 
