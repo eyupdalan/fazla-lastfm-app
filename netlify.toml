@@ -1,6 +1,7 @@
 # example netlify.toml
 [build]
   command = "yarn build"
+  publish = "out"
   functions = "netlify/functions"
 [functions]
   included_files = ["public/locales/*"]
