@@ -9,6 +9,11 @@ const nextConfig = {
             "upload.wikimedia.org",
             "localhost"
         ]
+    },
+    experimental: {
+        images: {
+            unoptimized: true
+        }
     }
 }
 
