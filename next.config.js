@@ -3,6 +3,7 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     images: {
+        unoptimized: true,
         domains: [
             "lastfm.freetls.fastly.net",
             "en.wikipedia.org",
