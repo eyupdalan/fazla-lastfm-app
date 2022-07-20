@@ -3,18 +3,37 @@ import ApiUrl from "../../../constants/apiUrls";
 import {useEffect, useState} from "react";
 import TopArtistDetailCardList from "../../../components/TopArtistDetailCardList";
 import Link from "next/link";
+import {useQuery} from "react-query";
+import {useRouter} from "next/router";
 
-export default function Artist({topAlbums, topTracks}) {
+export default function Artist() {
     const [artist, setArtist] = useState({});
 
+    const router = useRouter()
+
+    const getArtistData = async ({queryKey}) => {
+        const [_key, { myRouter }] = queryKey
+        const mbid = myRouter.query.mbid;
+        const topAlbumsPromise = fetch(ApiUrl.getTopAlbums(mbid));
+        const topTracksPromise = fetch(ApiUrl.getTopTracks(mbid));
+        const response = await Promise.all([topAlbumsPromise, topTracksPromise]);
+
+        const topAlbums = await response[0].json();
+        const topTracks = await response[1].json();
+
+        return {topAlbums: topAlbums.topalbums.album, topTracks: topTracks.toptracks.track}
+    }
+
+    const query = useQuery(['artist-data',{myRouter: router}], getArtistData)
+
     useEffect(() => {
-        if (!topAlbums || topAlbums.length <= 0) {
+        if (!query || !query.data || !query.data.topAlbums || query.data.topAlbums.length <= 0) {
             return;
         }
 
-        const artist = topAlbums[0].artist;
+        const artist = query.data.topAlbums[0].artist;
         setArtist(artist);
-    }, [topAlbums])
+    }, [query])
 
     return (
         <div className={styles.artistDetailContainer}>
@@ -27,25 +46,13 @@ export default function Artist({topAlbums, topTracks}) {
             <div className={styles.artistDetails}>
                 <div className={styles.artistDetailColumn}>
                     <h1>Top Albums</h1>
-                    <TopArtistDetailCardList data={topAlbums}/>
+                    <TopArtistDetailCardList data={query.data ? query.data.topAlbums : []}/>
                 </div>
                 <div className={styles.artistDetailColumn}>
                     <h1>Top Tracks</h1>
-                    <TopArtistDetailCardList data={topTracks}/>
+                    <TopArtistDetailCardList data={query.data ? query.data.topTracks : []}/>
                 </div>
             </div>
         </div>
     )
-}
-
-export async function getServerSideProps(context) {
-    const mbid = context.query.mbid;
-    const topAlbumsPromise = fetch(ApiUrl.getTopAlbums(mbid));
-    const topTracksPromise = fetch(ApiUrl.getTopTracks(mbid));
-    const response = await Promise.all([topAlbumsPromise, topTracksPromise]);
-
-    const topAlbums = await response[0].json();
-    const topTracks = await response[1].json();
-
-    return {props: {topAlbums: topAlbums.topalbums.album, topTracks: topTracks.toptracks.track}}
 }

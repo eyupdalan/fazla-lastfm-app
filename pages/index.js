@@ -61,14 +61,3 @@ Home.propTypes = {
     page: PropTypes.number.isRequired,
     totalPages: PropTypes.number.isRequired
 }
-
-export async function getServerSideProps({query} = {query: {page: 1}}) {
-    const pageNumber = query.page || 1;
-    const url = ApiUrl.getTopArtists(pageNumber);
-    const res = await fetch(url);
-    const data = await res.json();
-    const artists = data.artists.artist;
-    const {page, totalPages} = data.artists["@attr"]
-
-    return {props: {artists, page: parseInt(page, 10), totalPages: parseInt(totalPages, 10)}}
-}
