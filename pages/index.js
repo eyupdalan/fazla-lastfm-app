@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import ArtistList from "../components/ArtistList";
@@ -54,10 +53,4 @@ export default function Home() {
             </footer>
         </div>
     )
-}
-
-Home.propTypes = {
-    artists: PropTypes.array.isRequired,
-    page: PropTypes.number.isRequired,
-    totalPages: PropTypes.number.isRequired
 }
