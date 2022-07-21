@@ -29,3 +29,13 @@
     width: 50%;
     margin: 5px;
 }
+
+@media (max-width: 768px) {
+    .artistDetails {
+        flex-direction: column;
+    }
+
+    .artistDetailColumn {
+        width: 100%;
+    }
+}
