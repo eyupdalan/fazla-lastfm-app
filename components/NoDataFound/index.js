@@ -1,7 +1,14 @@
-import {Empty} from "antd";
+import PropTypes from "prop-types";
 
-export default function NoDataFound() {
+export default function NoDataFound({message} = {message: "No data found"}) {
     return (
-        <Empty id={"no-data-found"} image={Empty.PRESENTED_IMAGE_DEFAULT} description={"No data found"}/>
+        <div id={"no-data-found"}>{message}</div>
     );
+}
+
+NoDataFound.propTypes = {
+    /**
+     * Message to display when no data is found
+     */
+    message: PropTypes.string
 }
