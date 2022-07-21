@@ -1,17 +1,27 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 .white > * {
-  color: black;
-  background-color: white;
+    color: black;
+    background-color: white;
 }
 
 .dark > * {
-  color: white;
-  background-color: black;
+    color: white;
+    background-color: black;
+}
+
+.theme-selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.theme-selection div {
+  padding: 5px 15px;
 }

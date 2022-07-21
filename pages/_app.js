@@ -10,13 +10,15 @@ function MyApp({Component, pageProps}) {
     return (
         <QueryClientProvider client={queryClient}>
             <div className={theme}>
-                <div>
-                    white mode: <input type={"radio"} value={"white"} checked={theme === "white"}
-                                       onChange={() => setTheme("white")}/>
-                </div>
-                <div>
-                    dark mode: <input type={"radio"} value={"dark"} checked={theme === "dark"}
-                                      onChange={() => setTheme("dark")}/>
+                <div className={"theme-selection"}>
+                    <div>
+                        white mode: <input type={"radio"} value={"white"} checked={theme === "white"}
+                                           onChange={() => setTheme("white")}/>
+                    </div>
+                    <div>
+                        dark mode: <input type={"radio"} value={"dark"} checked={theme === "dark"}
+                                          onChange={() => setTheme("dark")}/>
+                    </div>
                 </div>
                 <Component {...pageProps}/>
             </div>
