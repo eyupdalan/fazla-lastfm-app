@@ -9,5 +9,9 @@ export const NoDataFoundStory = () => (
     <NoDataFound />
 );
 
+export const NoDataFoundWithCustomMessageStory = () => (
+    <NoDataFound message={"No image"}/>
+);
+
 
 export default noDataFoundStory;
