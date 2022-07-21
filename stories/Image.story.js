@@ -1,4 +1,4 @@
-import Image from "./index";
+import Image from "../components/Image";
 
 const imageStory = {
     title: 'Components/Image',

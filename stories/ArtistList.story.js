@@ -1,4 +1,4 @@
-import ArtistList from "./index";
+import ArtistList from "../components/ArtistList";
 
 const artistListStory = {
     title: 'Components/ArtistList',

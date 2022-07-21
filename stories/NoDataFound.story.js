@@ -1,4 +1,4 @@
-import NoDataFound from "./index";
+import NoDataFound from "../components/NoDataFound";
 
 const noDataFoundStory = {
     title: 'Components/NoDataFound',

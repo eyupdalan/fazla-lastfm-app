@@ -1,7 +1,7 @@
-import Artist from "./index";
+import Artist from "../pages/artist/[mbid]";
 import {QueryClient, QueryClientProvider} from "react-query";
 
-const artistStory = {
+const artistPageStory = {
     title: 'Pages/Artist',
     component: Artist,
 };
@@ -14,4 +14,4 @@ export const ArtistStory = () => (
     </QueryClientProvider>
 );
 
-export default artistStory;
+export default artistPageStory;

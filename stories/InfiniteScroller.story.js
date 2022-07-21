@@ -1,4 +1,4 @@
-import InfiniteScroller from "./index";
+import InfiniteScroller from "../components/InfiniteScroller";
 import {QueryClient, QueryClientProvider} from "react-query";
 
 const infiniteScrollerStory = {

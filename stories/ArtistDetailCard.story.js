@@ -1,4 +1,4 @@
-import ArtistDetailCard from "./index";
+import ArtistDetailCard from "../components/ArtistDetailCard";
 
 const artistDetailCardStory = {
     title: 'Components/ArtistDetailCard',
